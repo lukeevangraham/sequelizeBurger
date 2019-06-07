@@ -1,27 +1,28 @@
-var orm = require("../config/orm")
-
-var burger = {
-    selectAll: function (cb) {
-        orm.selectAll(function (res) {
-            cb(res);
-        });
-    },
-    // insertOne: function(burgerCols, burgerVals, cb) {
-    //     orm.insertOne(burgerCols, burgerVals, function(res) {
-    //         cb(res);
-    //     });
-    // },
-    insertOne: function (cols, vals, cb) {
-        orm.insertOne("burgers", cols, vals, function (res) {
-            cb(res);
-        });
-    },
-    updateOne: function (objColVals, condition, cb) {
-        console.log("objcolvals is: " + JSON.stringify(objColVals));
-        orm.updateOne("burgers", objColVals, condition, function (res) {
-            cb(res);
-        });
-    }
-}
-
-module.exports = burger;
+module.exports = function(sequelize, DataTypes) {
+    var Burger = sequelize.define("Burger", {
+      burger_name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: [1]
+        }
+      },
+      devoured: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      }
+    });
+  
+    // burger.associate = function(models) {
+    //   // We're saying that a Post should belong to an Author
+    //   // A Post can't be created without an Author due to the foreign key constraint
+    //   burger.belongsTo(models.Author, {
+    //     foreignKey: {
+    //       allowNull: false
+    //     }
+    //   });
+    // };
+  
+    return Burger;
+  };
+  
