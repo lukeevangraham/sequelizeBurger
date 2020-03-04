@@ -8,18 +8,16 @@ var db = require("../models");
 // Create all our routes and set up logic within those routes where required.
 router.get("/", function(req, res) {
   db.Burger.findAll({
-    // var hbsObject = {
-    //   burgers: data
-    // };
-    // console.log(hbsObject);
   }).then(function(data) {
-    // console.log("LOOK HERE: ", res)
+    let newData = []
+    data.forEach(burger => {
+      newData.push(burger.dataValues)
+    });
     var hbsObject = {
-      burgers: data
+      burgers: newData
     };
     res.render("index", hbsObject);
   })
-  // res.render("index", hbsObject);
 });
 
 router.post("/api/burgers", function(req, res) {
@@ -33,7 +31,7 @@ router.post("/api/burgers", function(req, res) {
   //   res.json({ id: result.insertId });
   // });
 
-  console.log('devoured', req.body.devoured)
+  // console.log('devoured', req.body.devoured)
   db.insertOne([
     "burger_name", "devoured"
   ], [
@@ -47,15 +45,15 @@ router.post("/api/burgers", function(req, res) {
 router.put("/api/burgers/:id", function(req, res) {
   var condition = "id = " + req.params.id;
 
-  console.log("condition", condition);
+  // console.log("condition", condition);
 
-  console.log("the body is", req.body.devoured);
+  // console.log("the body is", req.body.devoured);
 
   db.updateOne({
     // devoured: req.body.devoured
     devoured: 1
   }, condition, function(result) {
-    console.log(result);
+    // console.log(result);
     if (result.changedRows == 0) {
       // If no rows were changed, then the ID must not exist, so 404
       return res.status(404).end();

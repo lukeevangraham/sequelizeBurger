@@ -9,9 +9,8 @@
     <h3>Burgers that have not been devoured!</h3>
 
     <ul>
-      {{log this.burgers}}
       {{#each burgers}}
-      {{#unless dataValues.devoured}}
+      {{#unless devoured}}
       {{> burgers/burger-block devoured=true}}
       {{/unless}}
       {{/each}}
@@ -23,7 +22,7 @@
 
     <ul>
       {{#each burgers}}
-      {{#if dataValues.devoured}}
+      {{#if devoured}}
       {{> burgers/burger-block devoured=false}}
       {{/if}}
       {{/each}}
