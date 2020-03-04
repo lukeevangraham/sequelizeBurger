@@ -9,6 +9,7 @@
     <h3>Burgers that have not been devoured!</h3>
 
     <ul>
+      {{log this}}
       {{#each burgers}}
       {{#unless devoured}}
       {{> burgers/burger-block devoured=true}}
