@@ -21,6 +21,7 @@ router.get("/", function(req, res) {
 });
 
 router.post("/api/burgers", function(req, res) {
+  console.log("INSERTING: ", req.body.burger_name)
   // console.log('devoured', req.body.devoured)
   // burger.insertOne([
   //   "burger_name", "devoured"
@@ -32,14 +33,12 @@ router.post("/api/burgers", function(req, res) {
   // });
 
   // console.log('devoured', req.body.devoured)
-  db.insertOne([
-    "burger_name", "devoured"
-  ], [
-    req.body.burger_name, 0
-  ], function(result) {
-    // Send back the ID of the new cat
-    res.json({ id: result.insertId });
-  });
+  db.Burger.create({
+    burger_name: req.body.burger_name,
+    devoured: 0
+  }).then(function(result) {
+    res.json(result)
+  })
 });
 
 router.put("/api/burgers/:id", function(req, res) {
