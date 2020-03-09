@@ -1,14 +1,13 @@
 <li>
-	{{log this}}
 	{{burger_name}}
 
 	{{#if devoured}}
-	<input type="text" placeholder="Customer?" id="burger{{id}}">
+	<input type="text" placeholder="Customer?" id="burger{{id}}" required>
 	<button class="change-devour" data-id="{{id}}" data-newdevour="{{devour}}">
 		Devour it!
 	</button>
 
-	{{else}}(eaten by {{Customer.dataValues.name}})
+	{{else}}<span class="eatenBy">(eaten by {{Customer.dataValues.name}})</span>
 
 	{{/if}}
 

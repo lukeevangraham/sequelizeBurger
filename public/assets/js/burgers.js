@@ -27,31 +27,35 @@ $(document).ready(function() {
 
     let enteredName = $("#burger" + id).val();
 
-    var newDevourState = {
-      devoured: 0
-    };
+    if (!enteredName) {
+      alert("Please enter a customer name");
+    } else {
+      var newDevourState = {
+        devoured: 0
+      };
 
-    let newCustomer = {
-      name: enteredName,
-      BurgerId: id
-    };
+      let newCustomer = {
+        name: enteredName,
+        BurgerId: id
+      };
 
-    $.ajax("/api/customers", {
-      type: "POST",
-      data: newCustomer
-    }).then(function() {
-      console.log("Customer added");
-
-      // Send the PUT request.
-      $.ajax("/api/burgers/" + id, {
-        type: "PUT",
-        data: newDevourState
+      $.ajax("/api/customers", {
+        type: "POST",
+        data: newCustomer
       }).then(function() {
-        // console.log("changed devoured state to true");
-        // Reload the page to get the updated list
-        // location.reload();
+        console.log("Customer added");
+
+        // Send the PUT request.
+        $.ajax("/api/burgers/" + id, {
+          type: "PUT",
+          data: newDevourState
+        }).then(function() {
+          // console.log("changed devoured state to true");
+          // Reload the page to get the updated list
+          location.reload();
+        });
       });
-    });
+    }
   });
 
   // $(".create-form").on("submit", function (event) {
@@ -74,6 +78,10 @@ $(document).ready(function() {
       devoured: "false"
     };
 
+    !newBurger.burger_name ? (alert("Please enter a burger name")) : (
+
+    
+
     // // Send the POST request.
     $.ajax("/api/burgers", {
       type: "POST",
@@ -82,9 +90,10 @@ $(document).ready(function() {
       console.log("created new burger");
       // Reload the page to get the updated list
       location.reload();
-    });
+    })
 
     // });
+    )
   });
 
   function insertTodo(event) {

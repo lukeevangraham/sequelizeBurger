@@ -42,3 +42,7 @@ li {
       background-color: #FFD8B5;
       border-radius: 7px;
   }
+
+  .eatenBy {
+    font-style: italic;
+  }
