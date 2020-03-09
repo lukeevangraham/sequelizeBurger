@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
       timestamps: false
     });
     Burger.associate = function(models) {
-      Burger.hasOne(models.Customer, {})
+      Burger.hasOne(models.Customer)
     }
   
     // burger.associate = function(models) {

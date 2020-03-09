@@ -7,7 +7,9 @@ var db = require("../models");
 
 // Create all our routes and set up logic within those routes where required.
 router.get("/", function(req, res) {
-  db.Burger.findAll({}).then(function(data) {
+  db.Burger.findAll({
+    include: [db.Customer]
+  }).then(function(data) {
     let newData = [];
     data.forEach(burger => {
       newData.push(burger.dataValues);
@@ -58,6 +60,7 @@ router.post("/api/customers/", function(req, res) {
   console.log("inserting", req.body.name)
   db.Customer.create({
     name: req.body.name,
+    BurgerId: req.body.BurgerId
   }).then(function(result) {
     res.json(result);
   });
