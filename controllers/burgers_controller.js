@@ -54,5 +54,15 @@ router.put("/api/burgers/:id", function(req, res) {
   });
 });
 
+router.post("/api/customers/", function(req, res) {
+  console.log("inserting", req.body.name)
+  db.Customer.create({
+    name: req.body.name,
+    BurgerId: req.body.BurgerId
+  }).then(function(result) {
+    res.json(result);
+  });
+});
+
 // Export routes for server.js to use.
 module.exports = router;

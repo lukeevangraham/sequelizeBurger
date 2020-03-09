@@ -14,6 +14,9 @@ module.exports = function(sequelize, DataTypes) {
     }, {
       timestamps: false
     });
+    Burger.associate = function(models) {
+      Burger.hasOne(models.Customer, {})
+    }
   
     // burger.associate = function(models) {
     //   // We're saying that a Post should belong to an Author

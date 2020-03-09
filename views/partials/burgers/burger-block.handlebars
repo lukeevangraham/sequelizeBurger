@@ -1,4 +1,5 @@
 <li>
+	{{log this}}
 	{{burger_name}}
 
 	{{#if devoured}}
@@ -6,7 +7,11 @@
 	<button class="change-devour" data-id="{{id}}" data-newdevour="{{devour}}">
 		Devour it!
 	</button>
+
+	{{else}}(eaten by {{customer}})
+
 	{{/if}}
+
 
 
 </li>

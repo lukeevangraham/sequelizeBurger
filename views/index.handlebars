@@ -23,7 +23,7 @@
     <ul>
       {{#each burgers}}
       {{#if devoured}}
-      {{> burgers/burger-block devoured=false}}
+      {{> burgers/burger-block customer="howdy" devoured=false}}
       {{/if}}
       {{/each}}
     </ul>
