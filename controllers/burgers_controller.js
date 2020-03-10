@@ -8,6 +8,9 @@ var db = require("../models");
 // Create all our routes and set up logic within those routes where required.
 router.get("/", function(req, res) {
   db.Burger.findAll({
+    order: [
+      ['burger_name']
+    ],
     include: [db.Customer]
   }).then(function(data) {
     let newData = [];
