@@ -39,14 +39,14 @@ $(document).ready(function() {
         BurgerId: id
       };
 
-      $.ajax("/api/customers", {
+      $.ajax("./api/customers", {
         type: "POST",
         data: newCustomer
       }).then(function() {
         console.log("Customer added");
 
         // Send the PUT request.
-        $.ajax("/api/burgers/" + id, {
+        $.ajax("./api/burgers/" + id, {
           type: "PUT",
           data: newDevourState
         }).then(function() {
@@ -83,7 +83,7 @@ $(document).ready(function() {
     
 
     // // Send the POST request.
-    $.ajax("/api/burgers", {
+    $.ajax("./api/burgers", {
       type: "POST",
       data: newBurger
     }).then(function() {
@@ -103,7 +103,7 @@ $(document).ready(function() {
       devoured: false
     };
 
-    $.post("/api/todos", burger, getBurgers);
+    $.post("./api/todos", burger, getBurgers);
     $newItemInput.val("");
   }
 });
