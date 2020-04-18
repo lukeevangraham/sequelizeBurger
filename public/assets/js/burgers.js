@@ -83,7 +83,7 @@ $(document).ready(function() {
     
 
     // // Send the POST request.
-    $.ajax("/api/burgers", {
+    $.ajax("./api/burgers", {
       type: "POST",
       data: newBurger
     }).then(function() {
